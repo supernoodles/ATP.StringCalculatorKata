@@ -3,6 +3,7 @@ namespace ATP.StringCalculatorKata.Tests
 {
     using FluentAssertions;
     using NUnit.Framework;
+    using Source;
 
     [TestFixture]
     public class StringCalculatorShould
@@ -13,15 +14,6 @@ namespace ATP.StringCalculatorKata.Tests
             var  calculator = new StringCalculator();
             var result = calculator.Add("");
             result.Should().Be(0);
-        }
-    }
-
-
-    public class StringCalculator
-    {
-        public int Add(string numbers)
-        {
-            return 0;
         }
     }
 }
