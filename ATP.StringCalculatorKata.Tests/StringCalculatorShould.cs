@@ -39,5 +39,13 @@ namespace ATP.StringCalculatorKata.Tests
 
             result.Should().Be(100);
         }
+
+        [Test]
+        public void GivenStringOf42_Return42()
+        {
+            var result = calculator.Add("42");
+
+            result.Should().Be(42);
+        }
     }
 }
