@@ -15,5 +15,13 @@ namespace ATP.StringCalculatorKata.Tests
             var result = calculator.Add("");
             result.Should().Be(0);
         }
+
+        [Test]
+        public void GivenStringOf1_Return1()
+        {
+            var calculator = new StringCalculator();
+            var result = calculator.Add("1");
+            result.Should().Be(1);
+        }
     }
 }
