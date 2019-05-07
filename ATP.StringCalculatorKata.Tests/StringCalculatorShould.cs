@@ -16,6 +16,7 @@ namespace ATP.StringCalculatorKata.Tests
         }
     }
 
+
     public class StringCalculator
     {
         public int Add(string numbers)
