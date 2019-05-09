@@ -9,30 +9,24 @@
                 return 0;
             }
 
-            if (numbers == "1,2,3")
-            {
-                return 6;
-            }
-
-            if (numbers == "100,200,49")
-            {
-                return 349;
-            }
-
-            if (numbers == "42,42,42")
-            {
-                return 126;
-            }
-
-
             var operands = numbers.Split(',');
 
             if (operands.Length == 2)
             {
-                return int.Parse(operands[0]) + int.Parse(operands[1]);
+                return operands[0].ToInt() + operands[1].ToInt();
+            }
+
+            if (operands.Length == 3)
+            {
+                return  operands[0].ToInt() + operands[1].ToInt() + operands[2].ToInt();
             }
 
             return int.Parse(numbers);
         }
+    }
+
+    internal static class StringExtensions
+    {
+        internal static int ToInt (this string number) => int.Parse(number);
     }
 }
