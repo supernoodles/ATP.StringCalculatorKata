@@ -49,11 +49,19 @@ namespace ATP.StringCalculatorKata.Tests
         }
 
         [Test]
-        public void GivenStringWith2NewLine3NewLine100()
+        public void GivenStringWith2NewLine3NewLine_Return100()
         {
             var result = calculator.Add("2\n3\n100");
 
             result.Should().Be(105);
+        }
+
+        [Test]
+        public void GivenStringWith1Newline2Newline3Newline4_Return10()
+        {
+            var result = calculator.Add("1\n2\n3\n4");
+
+            result.Should().Be(10);
         }
     }
 }
