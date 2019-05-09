@@ -56,5 +56,12 @@ namespace ATP.StringCalculatorKata.Tests
             result.Should().Be(3);
         }
 
+        [Test]
+        public void GivenStringOf2Comma3_Return5()
+        {
+            var result = calculator.Add("2,3");
+
+            result.Should().Be(5);
+        }
     }
 }
