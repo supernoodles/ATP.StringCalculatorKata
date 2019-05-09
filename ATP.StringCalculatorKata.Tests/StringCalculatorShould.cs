@@ -47,13 +47,11 @@ namespace ATP.StringCalculatorKata.Tests
         public int GivenANewLineDelimitedListOfNumbers_ReturnExpectedSum(string numbers) =>
             calculator.Add(numbers);
 
-        [Test]
-        public void Given1NewLine2Comma3_Return6()
-        {
-            var result = calculator.Add("1\n2,3");
-
-            result.Should().Be(6);
-        }
+        [TestCase("1\n2,3", ExpectedResult = 6)]
+        [TestCase("11,2\n3", ExpectedResult = 16)]
+        [TestCase("1\n2\n3,4", ExpectedResult = 10)]
+        public int GivenListDelimitedWithNewlinesAndCommas_ReturnExpectedSum(string numbers) =>
+            calculator.Add(numbers);
 
         [Test]
         public void GivenOneNumberAndTwoDelimiters_ReturnFormatException()
