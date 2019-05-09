@@ -60,5 +60,15 @@ namespace ATP.StringCalculatorKata.Tests
                 .Invoking(sut => sut.Add("1,\n"))
                 .Should().Throw<FormatException>();
         }
+
+        [Test]
+        public void WhenSemicolonDelimiter_Given1Semicolon2_Return3()
+        {
+            var input = "//;\n1;2";
+
+            var result = calculator.Add(input);
+
+            result.Should().Be(3);
+        }
     }
 }
