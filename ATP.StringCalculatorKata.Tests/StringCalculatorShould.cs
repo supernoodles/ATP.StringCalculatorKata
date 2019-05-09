@@ -47,5 +47,13 @@ namespace ATP.StringCalculatorKata.Tests
 
             result.Should().Be(3);
         }
+
+        [Test]
+        public void GivenStringWith2NewLine3NewLine100()
+        {
+            var result = calculator.Add("2\n3\n100");
+
+            result.Should().Be(105);
+        }
     }
 }
