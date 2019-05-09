@@ -10,23 +10,8 @@
             {
                 return 0;
             }
-
-            if (numbers == "1\n2")
-            {
-                return 3;
-            }
-
-            if (numbers == "2\n3\n100")
-            {
-                return 105;
-            }
-
-            if (numbers == "1\n2\n3\n4")
-            {
-                return 10;
-            }
-
-            var operands = numbers.Split(',');
+           
+            var operands = numbers.Split('\n', ',');
 
             return operands.Sum(operand => operand.ToInt());
         }

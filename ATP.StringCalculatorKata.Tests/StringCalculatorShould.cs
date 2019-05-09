@@ -4,6 +4,7 @@ namespace ATP.StringCalculatorKata.Tests
     using FluentAssertions;
     using NUnit.Framework;
     using Source;
+    using System;
 
     [TestFixture]
     public class StringCalculatorShould
@@ -40,28 +41,26 @@ namespace ATP.StringCalculatorKata.Tests
         public int GivenACommaDelimitedListOfNumbers_ReturnExpectedSum(string numbers) =>
             calculator.Add(numbers);
 
-        [Test]
-        public void GivenStringWith1NewLine2_Return3()
-        {
-            var result = calculator.Add("1\n2");
+        [TestCase("1\n2", ExpectedResult = 3)]
+        [TestCase("2\n3\n100", ExpectedResult = 105)]
+        [TestCase("1\n2\n3\n4", ExpectedResult = 10)]
+        public int GivenANewLineDelimitedListOfNumbers_ReturnExpectedSum(string numbers) =>
+            calculator.Add(numbers);
 
-            result.Should().Be(3);
+        [Test]
+        public void Given1NewLine2Comma3_Return6()
+        {
+            var result = calculator.Add("1\n2,3");
+
+            result.Should().Be(6);
         }
 
         [Test]
-        public void GivenStringWith2NewLine3NewLine_Return100()
+        public void GivenOneNumberAndTwoDelimiters_ReturnFormatException()
         {
-            var result = calculator.Add("2\n3\n100");
-
-            result.Should().Be(105);
-        }
-
-        [Test]
-        public void GivenStringWith1Newline2Newline3Newline4_Return10()
-        {
-            var result = calculator.Add("1\n2\n3\n4");
-
-            result.Should().Be(10);
+            calculator
+                .Invoking(sut => sut.Add("1,\n"))
+                .Should().Throw<FormatException>();
         }
     }
 }
