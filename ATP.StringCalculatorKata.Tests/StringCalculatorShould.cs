@@ -39,5 +39,13 @@ namespace ATP.StringCalculatorKata.Tests
         [TestCase("42,42,42,1,1", ExpectedResult = 128)]
         public int GivenACommaDelimitedListOfNumbers_ReturnExpectedSum(string numbers) =>
             calculator.Add(numbers);
+
+        [Test]
+        public void GivenStringWith1NewLine2_Return3()
+        {
+            var result = calculator.Add("1\n2");
+
+            result.Should().Be(3);
+        }
     }
 }
