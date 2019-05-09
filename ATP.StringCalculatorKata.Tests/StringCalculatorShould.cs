@@ -59,5 +59,15 @@ namespace ATP.StringCalculatorKata.Tests
 
             result.Should().Be(126);
         }
+
+        [Test]
+        public void GivenStringOf42Comma42Comma42Comma1Comma1_Return128()
+        {
+            var result = calculator.Add("42,42,42,1,1");
+
+            result.Should().Be(128);
+        }
+
+
     }
 }
