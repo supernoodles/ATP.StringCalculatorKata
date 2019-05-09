@@ -35,5 +35,21 @@ namespace ATP.StringCalculatorKata.Tests
         [TestCase("250,40", ExpectedResult = 290)]
         public int GivenStringOfNumberCommaNumber_ReturnExpectedResult(string numbers) =>
             calculator.Add(numbers);
+
+        [Test]
+        public void GivenStringOf1Comma2Comma3_Return6()
+        {
+            var result = calculator.Add("1,2,3");
+
+            result.Should().Be(6);
+        }
+
+        [Test]
+        public void GivenStringOf100Comma200Comma49_Return349()
+        {
+            var result = calculator.Add("100,200,49");
+
+            result.Should().Be(349);
+        }
     }
 }
