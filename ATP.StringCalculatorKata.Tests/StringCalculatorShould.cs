@@ -33,41 +33,11 @@ namespace ATP.StringCalculatorKata.Tests
         [TestCase("1,2", ExpectedResult = 3)]
         [TestCase("2,3", ExpectedResult = 5)]
         [TestCase("250,40", ExpectedResult = 290)]
-        public int GivenStringOfNumberCommaNumber_ReturnExpectedResult(string numbers) =>
+        [TestCase("1,2,3", ExpectedResult = 6)]
+        [TestCase("100,200,49", ExpectedResult = 349)]
+        [TestCase("42,42,42", ExpectedResult = 126)]
+        [TestCase("42,42,42,1,1", ExpectedResult = 128)]
+        public int GivenACommaDelimitedListOfNumbers_ReturnExpectedSum(string numbers) =>
             calculator.Add(numbers);
-
-        [Test]
-        public void GivenStringOf1Comma2Comma3_Return6()
-        {
-            var result = calculator.Add("1,2,3");
-
-            result.Should().Be(6);
-        }
-
-        [Test]
-        public void GivenStringOf100Comma200Comma49_Return349()
-        {
-            var result = calculator.Add("100,200,49");
-
-            result.Should().Be(349);
-        }
-
-        [Test]
-        public void GivenStringOf42Comma42Comma42_Return126()
-        {
-            var result = calculator.Add("42,42,42");
-
-            result.Should().Be(126);
-        }
-
-        [Test]
-        public void GivenStringOf42Comma42Comma42Comma1Comma1_Return128()
-        {
-            var result = calculator.Add("42,42,42,1,1");
-
-            result.Should().Be(128);
-        }
-
-
     }
 }

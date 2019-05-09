@@ -1,5 +1,7 @@
 ﻿namespace ATP.StringCalculatorKata.Source
 {
+    using System.Linq;
+
     public class StringCalculator
     {
         public int Add(string numbers)
@@ -11,22 +13,7 @@
 
             var operands = numbers.Split(',');
 
-            if (operands.Length == 2)
-            {
-                return operands[0].ToInt() + operands[1].ToInt();
-            }
-
-            if (operands.Length == 3)
-            {
-                return  operands[0].ToInt() + operands[1].ToInt() + operands[2].ToInt();
-            }
-
-            if (numbers == "42,42,42,1,1")
-            {
-                return 128;
-            }
-
-            return int.Parse(numbers);
+            return operands.Sum(operand => operand.ToInt());
         }
     }
 
