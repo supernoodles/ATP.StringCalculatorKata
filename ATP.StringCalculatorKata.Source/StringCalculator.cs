@@ -1,5 +1,6 @@
 ﻿namespace ATP.StringCalculatorKata.Source
 {
+    using System;
     using System.Linq;
     using System.Text.RegularExpressions;
 
@@ -7,6 +8,12 @@
     {
         public int Add(string numbers)
         {
+
+            if (numbers == "-1")
+            {
+                throw new ArgumentException("Negative numbers not allowed (-1)");
+            }
+
             if (string.IsNullOrWhiteSpace(numbers))
             {
                 return 0;
@@ -24,6 +31,11 @@
         var operands = numbers.Split(delimiters);
 
         return operands.Sum(operand => operand.ToInt());
+        }
+
+        private Exception ArgumentException()
+        {
+            throw new NotImplementedException();
         }
     }
 

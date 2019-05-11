@@ -70,5 +70,35 @@ namespace ATP.StringCalculatorKata.Tests
 
             result.Should().Be(3);
         }
+
+        [Test]
+        public void WhenSemicolonDelimiter_Given1Semicolon2Semicolon5_Return8()
+        {
+            var input = "//;\n1;2;5";
+
+            var result = calculator.Add(input);
+
+            result.Should().Be(8);
+        }
+
+        [Test]
+        public void WhenPipeDelimiter_Given1Pipe2Pipe5_Return8()
+        {
+            var input = "//|\n1|2|5";
+
+            var result = calculator.Add(input);
+
+            result.Should().Be(8);
+        }
+
+        [Test]
+        public void GivenStringWithOneNegativeNumber_ReturnException()
+        {
+            var input = "-1";
+
+            Assert.Throws<ArgumentException>(() => calculator.Add(input));
+        }
+
+
     }
 }
