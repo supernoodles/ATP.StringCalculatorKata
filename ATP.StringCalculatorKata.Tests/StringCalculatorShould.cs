@@ -61,44 +61,24 @@ namespace ATP.StringCalculatorKata.Tests
                 .Should().Throw<FormatException>();
         }
 
-        [Test]
-        public void WhenSemicolonDelimiter_Given1Semicolon2_Return3()
-        {
-            var input = "//;\n1;2";
+        [TestCase("//;\n1;2", ExpectedResult = 3)]
+        [TestCase("//;\n1;2;5", ExpectedResult = 8)]
+        [TestCase("//|\n1|2|5", ExpectedResult = 8)]
+        [TestCase("//|\n1|2,5", ExpectedResult = 8)]
+        [TestCase("//|\n1\n2,5", ExpectedResult = 8)]
+        public int WhenCustomDelimiter_GivenListWithCustomDelimiter_ReturnExpectedSum(string numbers) =>
+            calculator.Add(numbers);
 
-            var result = calculator.Add(input);
-
-            result.Should().Be(3);
-        }
-
-        [Test]
-        public void WhenSemicolonDelimiter_Given1Semicolon2Semicolon5_Return8()
-        {
-            var input = "//;\n1;2;5";
-
-            var result = calculator.Add(input);
-
-            result.Should().Be(8);
-        }
-
-        [Test]
-        public void WhenPipeDelimiter_Given1Pipe2Pipe5_Return8()
-        {
-            var input = "//|\n1|2|5";
-
-            var result = calculator.Add(input);
-
-            result.Should().Be(8);
-        }
-
-        [Test]
-        public void GivenStringWithOneNegativeNumber_ReturnException()
-        {
-            var input = "-1";
-
-            Assert.Throws<ArgumentException>(() => calculator.Add(input));
-        }
-
-
+        [TestCase("-1", "-1")]
+        [TestCase("-1,-2", "-1,-2")]
+        [TestCase("-1,-2,-3", "-1,-2,-3")]
+        [TestCase("-1,2,-3", "-1,-3")]
+        [TestCase("-1\n-2,-3", "-1,-2,-3")]
+        [TestCase("//|\n-1|2", "-1")]
+        public void GivenStringWithOneOrMoreNegativeNumbers_ReturnException(string numbers, string exceptionOutput) =>
+            calculator
+                .Invoking(sut => sut.Add(numbers))
+                .Should().Throw<ArgumentException>()
+                .WithMessage($"Negatives not allowed {exceptionOutput}");
     }
 }
