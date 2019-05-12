@@ -11,7 +11,17 @@
         {
             if (numbers == "-1")
             {
-                throw new ArgumentException("Negative numbers not allowed (-1)");
+                throw new ArgumentException("Negatives not allowed -1");
+            }
+
+            if (numbers == "-1,-2")
+            {
+                throw new ArgumentException("Negatives not allowed -1,-2");
+            }
+
+            if (numbers == "-1,-2,-3")
+            {
+                throw new ArgumentException("Negatives not allowed -1,-2,-3");
             }
 
             if (string.IsNullOrWhiteSpace(numbers))

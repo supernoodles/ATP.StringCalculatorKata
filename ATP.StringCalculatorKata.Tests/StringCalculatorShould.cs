@@ -94,11 +94,28 @@ namespace ATP.StringCalculatorKata.Tests
         [Test]
         public void GivenStringWithOneNegativeNumber_ReturnException()
         {
-            var input = "-1";
-
-            Assert.Throws<ArgumentException>(() => calculator.Add(input));
+            calculator
+                .Invoking(sut => sut.Add("-1"))
+                .Should().Throw<ArgumentException>()
+                .WithMessage("Negatives not allowed -1");
         }
 
+        [Test]
+        public void GivenStringWithTwoNegativeNumbers_ThrowException()
+        {
+            calculator
+                .Invoking(sut => sut.Add("-1,-2"))
+                .Should().Throw<ArgumentException>()
+                .WithMessage("Negatives not allowed -1,-2");
+        }
 
+        [Test]
+        public void GivenStringWithThreeNegativeNumbers_ThrowException()
+        {
+            calculator
+                .Invoking(sut => sut.Add("-1,-2,-3"))
+                .Should().Throw<ArgumentException>()
+                .WithMessage("Negatives not allowed -1,-2,-3");
+        }
     }
 }
