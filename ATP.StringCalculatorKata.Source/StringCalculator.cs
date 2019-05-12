@@ -9,21 +9,6 @@
     {
         public int Add(string numbers)
         {
-            if (numbers == "-1")
-            {
-                throw new ArgumentException("Negatives not allowed -1");
-            }
-
-            if (numbers == "-1,-2")
-            {
-                throw new ArgumentException("Negatives not allowed -1,-2");
-            }
-
-            if (numbers == "-1,-2,-3")
-            {
-                throw new ArgumentException("Negatives not allowed -1,-2,-3");
-            }
-
             if (string.IsNullOrWhiteSpace(numbers))
             {
                 return 0;
@@ -38,8 +23,23 @@
                 delimiters.Add(customDelimiter.First());
             }
 
-            return GetOperands(operandList, delimiters)
-                .Sum(operand => operand.ToInt());
+            var operands = GetOperands(operandList, delimiters)
+                .Select(operand => operand.ToInt())
+                .ToList();
+
+            CheckForNegativeNumbers(operands);
+
+            return operands.Sum();
+        }
+
+        private void CheckForNegativeNumbers(List<int> operands)
+        {
+            var negativeOperands = operands.Where(operand => operand < 0).ToList();
+
+            if (negativeOperands.Any())
+            {
+                throw new ArgumentException($"Negatives not allowed {string.Join(",", negativeOperands)}");
+            }
         }
 
         private (string operandList, string customDelimiter) Parse(string input)
